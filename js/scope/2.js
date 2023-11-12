@@ -6,8 +6,9 @@ function foo(){
     function bar(){
         console.log(a);
     }
+
+    bar()
 }
 
 foo()
 
-bar()

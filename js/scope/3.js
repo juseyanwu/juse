@@ -1,6 +1,6 @@
 var b = 1
 
-function foo(a){
+function foo(a,b){
     console.log(a+b);
 }
 
