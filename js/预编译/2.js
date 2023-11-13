@@ -1,6 +1,4 @@
-
-haha = function(){
-    console.log(1);
+GO:{
+    global: undefined,
+    fn: function fn(){}
 }
-
-haha()
