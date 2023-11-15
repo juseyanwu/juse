@@ -1,7 +1,1 @@
-const map = {
-    1:2
-}
-
-map
-
-console.log(Boolean(map.'1'));
+console.log('a'.charCodeAt());

@@ -1,10 +1,12 @@
-/**app.wxss**/
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-} 
+/* 模块化划分 */
+@import"styles/reset.wxss";
+@import"styles/hero.wxss";
+@import"styles/button.wxss";
+@import"styles/action.wxss";
+
+page{
+  background: #f8f8f8;
+}
+.section{
+  height: 100vh;
+}
