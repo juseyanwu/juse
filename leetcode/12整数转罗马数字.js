@@ -19,9 +19,9 @@ var intToRoman = function(num) {
             num = num-key
             ans.push(value)
         }
-        if(num==0){
-            break;
-        }
     }
     return ans.join('')
 };
+
+
+console.log(intToRoman(28));
