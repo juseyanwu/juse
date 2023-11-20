@@ -17,6 +17,7 @@ function setTime(){
     secondHand.style.transform = `rotate(${secondsDegrees}deg)`
     minHand.style.transform = `rotate(${minDegrees}deg)`
     hourHand.style.transform = `rotate(${hourDegrees}deg)`
+    secondHand.style.background = "white"
 }
 
 setInterval(setTime,1000)
