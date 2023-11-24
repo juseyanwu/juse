@@ -1,18 +1,26 @@
 var mergeTwoLists = function(list1, list2) {
-    let x = list1
-    let y =list2
-    while(x.next!==null&&y.next!==null){
+    let dummy = new ListNode(0)
+    let current = dummy
+    let x =list1
+    let y = list2
+    while(x&&y){
         if(x.val>=y.val){
-            y=y.next
-            y.next = x
+            current.next = x
+            current = current.next
+            x = x.next
         }
-        else{
-            x=x.next
-            x.next = y
+        if(y.val>x.val){
+            current.next = y
+            current = current.next
+            y = y.next
         }
     }
-    if(list1.val>=list2.val){
-        return list1
+    if(!y.next){
+        current.next = x
     }
-    else return list2
+    if(!x.next){
+        current.next = y
+    }
+
+    return dummy.next
 };

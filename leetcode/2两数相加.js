@@ -1,32 +1,33 @@
 var addTwoNumbers = function(l1, l2) {
     let x = l1
     let y = l2
-    let a = 0
+    let carry = 0
+    let dummy = new ListNode(0)
+    let current = dummy
     while(x&&y){
-        if((x.val + y.val + a) < 10){
-            x.val = x.val + y.val + a
-            x = x.next
-            y = y.next
-            a = 0
-            x?x.val : 0
-            y?y.val : 0
+        
+        if(x.val + y.val + carry <10){
+            x.val = x.val + y.val + carry
+            carry = 0
         }
-        else{
-            x.val = Math.floor((x.val + y.val + a)%10)
-            a = 1
-            x = x.next
-            y = y.next
-            x?x.val : 0
-            y?y.val : 0
+        else if(x.val + y.val + carry>=10){
+            x.val = (x.val + y.val + carry)%10
+            carry = 1
         }
+        
+        if(x&&!y.next&&x.next){
+            y.next = new ListNode(0)
+        }
+        if(y&&!x.next&&y.next){
+            x.next = new ListNode(0)
+        }
+        current.next = x
+        current = current.next
+        x = x.next
+        y = y.next  
     }
-    if(a==1){
-        x.next = new ListNode(1)
+    if(carry == 1){
+        current.next = new ListNode(1)
     }
-    return l1
+    return dummy.next
 };
-
-243
-564
-
-703
