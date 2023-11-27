@@ -1,27 +1,23 @@
 var canConstruct = function(ransomNote, magazine) {
-    let x = new Map()
-    for(i=0;i<magazine.length;i++){
-        if(x.get(magazine[i])){
-            x.set(magazine[i],x.get(magazine[i])+1)
+    let hash = new Map()
+    let x = ransomNote
+    for(const letter of magazine){
+        if(hash.get(letter)){
+            hash.set(letter,hash.get(letter)+1)
+        }
+        else hash.set(letter,1)
+    }
+    for(const lett of ransomNote){
+        if(!hash.get(x)){
+            return false
         }
         else{
-            x.set(magazine[i],1)
+            x = x.relace(lett,'')
+            hash.set(lett,hash.get(lett)-1)
         }
     }
-    let ans = 1
-
-    for(j=0;j<ransomNote.length;j++){
-        if(x.has(ransomNote[j])){
-            x.set((ransomNote[j]),x.get(ransomNote[j])-1)
-        }
-        if(!(x.has(ransomNote[j]))){
-            ans = 0
-        }
+    if(x){
+        return true
     }
-    for(const n of x.values()){
-        if(n<0){
-            ans=0
-        }
-    }
-    return ans
+    else return  false
 };
