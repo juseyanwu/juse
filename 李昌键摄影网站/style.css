@@ -1,0 +1,189 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'YourFontName', sans-serif;
+    /* 使用自定义字体 */
+}
+
+@font-face {
+    font-family: 'YourFontName';
+    /* 自定义字体名称 */
+    src: url('./造字工房悦黑.ttf') format('truetype');
+    /* 字体文件的路径和格式 */
+}
+
+
+.container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.ImgContainer {
+    width: 600vw;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+
+.ImgContainer img {
+    width: 100vw;
+    height: auto;
+    object-fit: cover;
+}
+
+#pre-btn {
+    position: absolute;
+    top: 50%;
+    left: 2%;
+    font-size: 50px;
+    color: white;
+    opacity: 70%;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#next-btn {
+    position: absolute;
+    top: 50%;
+    right: 2%;
+    font-size: 50px;
+    color: white;
+    opacity: 70%;
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* 导航圆点 */
+.banner-control {
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 12;
+}
+
+.banner-control ul {
+    display: flex;
+    list-style: none;
+}
+
+.banner-control ul li {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #756f6f;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.header {
+    position: relative;
+    width: 100%;
+    /* border: 10px solid black; */
+    z-index: 99;
+    position: fixed;
+    background-color: rgb(29, 29, 53);
+    transition: 0.3s ease-in-out;
+}
+
+.search {
+    list-style-type: none;
+    display: flex;
+    float: right;
+    height: 58px;
+    font-size: 30px;
+    color: white;
+    align-items: center;
+    margin-right: 70px;
+    z-index: 999;
+}
+
+.search li {
+    width: 190px;
+    text-align: center;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+    cursor: pointer;
+    z-index: 999;
+    transition: 0.5s ease-in-out;
+}
+
+.li2 {
+    color: black;
+}
+
+.logo {
+    width: 400px;
+    height: 70px;
+    background: white;
+    position: absolute;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-left: 100px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    transition: 0.5s ease-in-out;
+    z-index: 100;
+}
+
+.logo2 {
+    width: 100%;
+    height: 100%;
+    background: white;
+    position: absolute;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    margin-left: 0px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+
+.logo img {
+    width: 300px;
+    margin-left: 50px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.videopage {
+    height: 100vh;
+    width: 100%;
+    /* border: 10px solid black; */
+}
+.peoplepage {
+    height: 100vh;
+    width: 100%;
+    /* border: 10px solid black; */
+}
+.viewpage {
+    height: 100vh;
+    width: 100%;
+    /* border: 10px solid black; */
+}
+.culturepage {
+    height: 100vh;
+    width: 100%;
+    /* border: 10px solid black; */
+}
+.aaa {
+    width: 190px;
+    height: 58px;
+    background:  rgb(29, 29, 53);
+    position: absolute;
+    margin-left: 0px;
+    margin-top: -46px;
+    z-index: 90;
+    opacity: .3;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transition: 0.3s ease-in-out;
+    /* display: none; */
+    /* color: #3b3b3b; */
+}
+
