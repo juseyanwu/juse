@@ -1,0 +1,18 @@
+.container {
+    display: grid;
+    grid-template-columns: 100px 200px 100px; /* 三列 */
+    grid-template-rows: 500px 200px; /* 两行 */
+    gap: 10px; /* 间距 */
+  
+    /* 其他属性（可选） */
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .item {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  

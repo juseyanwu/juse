@@ -187,3 +187,17 @@ body {
     /* color: #3b3b3b; */
 }
 
+.videopage{
+    height: 100vh; 
+}
+.peoplepage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* 背景渐变 */
+    background-image: linear-gradient(to top,
+            #3c2a32 0%,
+            #21204d 100%);
+}
+

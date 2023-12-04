@@ -13,98 +13,96 @@ body {
     src: url('./造字工房悦黑.ttf') format('truetype');
     /* 字体文件的路径和格式 */
 }
-.videopage{
+
+.shell {
     display: flex;
-    align-items: center;
     justify-content: center;
-    flex-direction: cloumn;
+    align-items: center;
+    flex-direction: column;
+    display: grid;
+}
+
+.box {
+    /*  将容器放置在第一行，其高度为第一行的高度 */
+    grid-row: 1 / 2;
+    /*  将容器放置在第一列，其宽度为第一到第八列的宽度 */
+    grid-column: 1 / 8;
+    width: 100vw;
     height: 100vh;
-    background-image: linear-gradient(to top,#9795f0 0%, #fbc8d4 100%);
-    overflow: hidden;
-}
-.shell{
-    position: relative;
-    width: 60vw;
-    height: 40vh;
-    color: white;
-    perspective: 1000px;
-    transform-origin: center;
-    max-width: 400px;
-    max-height: 600px;
-}
-
-.content{
     display: flex;
-    justify-content: center;
     align-items: center;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    transform-origin: center;
+    justify-content: center;
+    overflow: hidden;
+    /* 设置 3D 转换，以便于创建立体效果 */
     transform-style: preserve-3d;
-    transform: translateZ(-30vw) rotateY(0);
-    animation: carousel 9s infinite cubic-bezier(0.77,0,0.175,1) forwards ;
+    /* 定义立体效果的观察距离 */
+    perspective: 1000px;
+    /*  定义容器内包含的元素数量 */
+    --items: 5;
+    /* 定义容器内居中显示的元素 */
+    --middle: 3;
+    /* 定义容器内当前位置的元素 */
+    --position: 1;
 }
 
-.item{
-    max-width: 400px;
-    max-height: 600px;
+div.item {
     position: absolute;
-    width: 40vw;
-    height: 60vw;
-    box-shadow: 0 5px 20px black;
-    border-radius: 6px;
+    width: 550px;
+    height: 800px;
+    background-color: coral;
+    /* 定义一个 CSS 变量 --r 的值为 var(--position) - var(--offset) */
+    --r: calc(var(--position) - var(--offset));
+    /* 定义变量 --abs 的值为 var(--r) * -1 和 var(--r) 中的最大值 */
+    --abs: max(calc(var(--r) * -1), var(--r));
+    /* 元素的过渡效果为所有属性在 0.25 秒内以线性方式变化 */
+    transition: all 0.25s linear;
+    /* 旋转-10deg*var(--r)角度,并向x轴负方向平移-330px*var(--r) */
+    transform: rotateY(calc(-10deg * var(--r))) translateX(calc(-580px * var(--r)));
+    /* 使当前的图片位于最前面 */
+    z-index: calc((var(--position) - var(--abs)));
     background-size: cover;
-    /* -webkit-box-reflect: below 25px -webkit-linear-gradient(transparent 50%,rgba(255,255,255,0.3))  ; */
-}
-.item:nth-child(1){
-    background-image: url('./p1.jpg');
-    transform: rotateY(0)translateZ(35vw);
-}
-.item:nth-child(2){
-    background-image: url('./p1.jpg');
-    transform: rotateY(60deg)translateZ(35vw);
-}
-.item:nth-child(3){
-    background-image: url('./p1.jpg');
-    transform: rotateY(120deg)translateZ(35vw);
-}
-.item:nth-child(4){
-    background-image: url('./p1.jpg');
-    transform: rotateY(180deg)translateZ(35vw);
-}
-.item:nth-child(5){
-    background-image: url('./p1.jpg');
-    transform: rotateY(240deg)translateZ(35vw);
-}
-.item:nth-child(6){
-    background-image: url('./p1.jpg');
-    transform: rotateY(300deg)translateZ(35vw);
-}
-.item:nth-child(7){
-    background-image: url('./p1.jpg');
-    transform: rotateY(360deg)translateZ(35vw);
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
+    border: #24262f 10px solid;
+    border-radius: 5px;
 }
 
 
-@keyframes carousel {
-    0%,
-    17.5%{
-        transform:translateZ(-35vw)rotateY(0);
-    }
 
-    27.5%,
-    45%{
-        transform:translateZ(-35vw)rotateY(-60deg);
-    }
-
-    55%,
-    72.5%{
-        transform:translateZ(-35vw)rotateY(-120deg);
-    }
-
-    82.5%,
-    100%{
-        transform:translateZ(-35vw)rotateY(-180deg);
-    }
+.box .item:nth-of-type(1) {
+    --offset: 1;
+    background-image: url(./p1.jpg);
 }
+
+.box .item:nth-of-type(2) {
+    --offset: 2;
+    background-image: url(./p2.jpg);
+}
+
+.box .item:nth-of-type(3) {
+    --offset: 3;
+    background-image: url(./p3.jpg);
+}
+
+.box .item:nth-of-type(4) {
+    --offset: 4;
+    background-image: url(./p4.jpg);
+}
+
+.box .item:nth-of-type(5) {
+    --offset: 5;
+    background-image: url(./p5.jpg);
+}
+.box .item:nth-of-type(6) {
+    --offset: 6;
+    background-image: url(./p6.jpg);
+}
+.box .item:nth-of-type(7) {
+    --offset: 7;
+    background-image: url(./p7.jpg);
+}
+.box .item:nth-of-type(8) {
+    --offset: 8;
+    background-image: url(./p8.jpg);
+}
+
+
