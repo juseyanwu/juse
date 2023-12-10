@@ -8,7 +8,7 @@ import Header from '@/components/layout/header/Header.vue'
   <div class="w-screen h-screen flex items-stretch overflow-hidden">
     <!-- 原子性 -->
     <div class="w-56 h-screen flex-shrink-0">
-      <Menu/>
+      <Menu />
     </div>
     <div class="flex-1 flex flex-col">
       <div class="h-14">

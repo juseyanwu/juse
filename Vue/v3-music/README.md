@@ -37,3 +37,18 @@
     - vite.config.js是vite 工程化的配置文件
         - alias 短路径
             @ -> ./src 回城
+
+- 企业级vue开发框架 element-plus PC版用的
+    有好多组件可以拿来就用
+    vue 是一个渐进式的MVVM 的开发框架 是一种开发模式
+    element-plus 是一个组件库 提供一个我们想要的组件
+
+- 我们在vite里面写了一段Element plues 自动引入的代码
+
+- 通用组件
+    /components/common/
+    不属于特定的组件，有极高的复用性 在多个项目中可以复用
+
+- 如何引入图标字体库
+    - 要用到哪些图标?
+        import {} from '@icon-park/vue-next'
