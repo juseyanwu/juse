@@ -36,7 +36,7 @@ body {
     /* 设置 3D 转换，以便于创建立体效果 */
     transform-style: preserve-3d;
     /* 定义立体效果的观察距离 */
-    perspective: 1000px;
+    perspective: 800px;
     /*  定义容器内包含的元素数量 */
     --items: 5;
     /* 定义容器内居中显示的元素 */
