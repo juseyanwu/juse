@@ -59,14 +59,14 @@ ImgCotainer.addEventListener('transitionend', () => {
         ImgCotainer.style.transition = 'none' // 去掉过渡效果瞬间移动
         counter = Imgs.length - 2
         bonnerLi[0].style.backgroundColor = startColor
-        bonnerLi[3].style.backgroundColor = endColor
+        bonnerLi[4].style.backgroundColor = endColor
         ImgCotainer.style.transform = 'translateX(' + (-size * counter) + 'px)'
     }
     // 溢出图为第一张图时移到最前
     else if (Imgs[counter].id === 'firstClone') {
         ImgCotainer.style.transition = 'none'
         counter = Imgs.length - counter
-        bonnerLi[3].style.backgroundColor = startColor
+        bonnerLi[4].style.backgroundColor = startColor
         bonnerLi[0].style.backgroundColor = endColor
         ImgCotainer.style.transform = 'translateX(' + (-size * counter) + 'px)'
     }
@@ -179,4 +179,16 @@ logoImg.addEventListener('click',()=>{
     })
 })
 
+// setInterval(() => {
+//     if (counter >= Imgs.length - 1) return // 溢出图为最后一张图时不再移动
+//     ImgCotainer.style.transition = 'transform 0.5s ease-in-out';
+
+//     if (counter <= Imgs.length - 3) {
+//         bonnerLi[counter - 1].style.backgroundColor = startColor
+//         bonnerLi[counter].style.backgroundColor = endColor
+//     }
+
+//     counter++;
+//     ImgCotainer.style.transform = 'translateX(' + (-size * counter) + 'px)'
+// },2000)
 

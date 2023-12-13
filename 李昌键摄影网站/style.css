@@ -24,7 +24,7 @@ body {
 }
 
 .ImgContainer {
-    width: 600vw;
+    width: 700vw;
     height: 100vh;
     display: flex;
     overflow: hidden;
@@ -198,6 +198,16 @@ body {
             #21204d 100%);
 }
 .videopage img{
+    width: 100%;
+    object-fit: cover;
+    height: 100vh;
+}
+.culturepage img{
+    width: 100%;
+    object-fit: cover;
+    height: 100vh;
+}
+.viewpage img{
     width: 100%;
     object-fit: cover;
     height: 100vh;
