@@ -1,38 +1,64 @@
 <template>
-    <div class="header">
+    <div class="header" @click="showDetail">
         <div class="content-wrapper">
             <div class="avatar">
-                <img src="http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg" alt="">
+                <img :src="seller.avatar" alt="">
             </div>
             <div class="content">
                 <div class="title">
                     <span class="brand"></span>
-                    <span class="name">店铺名称</span>
+                    <span class="name">{{seller.name}}</span>
                 </div>
-                <div class="description">蜂鸟专送/38分钟送达</div>
-                <div class="support">
+                <div class="description">{{seller.description}}/{{seller.deliveryTime}}分钟送达</div>
+                <div class="support" v-if="seller.supports">
                     <!-- xxx -->
-                    <SupportIcon :size="1" :type="0"/>
-                    <span class="text">在线支付满28减5</span>
+                    <SupportIcon size="1" :type="seller.supports[0].type"/>
+                    <span class="text">{{ seller.supports[0].description }}</span>
                 </div>
             </div>
-            <div class="support-count">
-                <span class="count">5个</span>
+            <div class="support-count" v-if="seller.supports">
+                <span class="count">{{seller.supports.length}}个</span>
                 <i class="iconfont icon-right"></i>
             </div>
         </div>
         <div class="bulletin-wrapper">
-
+            <span class="bulletin-title"></span>
+            <span class="bulletin-text">{{seller.bulletin}}</span>
+            <i class="iconfont icon-right"></i>
         </div>
-        <div class="bg" style="background-image: url('http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg');"></div>
+        <div class="bg" v-if="seller.avatar" :style="{backgroundImage: `url(${seller.avatar})`}"></div>
+
+        <Headerdetail v-show="detailShow" @hide="handle"/>
     </div>
+
 </template>
 
 <script>
 import SupportIcon from '@/components/support-icon/Support-icon.vue'
+import Headerdetail from '@/components/header-detail/Header-detail.vue'
     export default {
         components:{
-            SupportIcon
+            SupportIcon,
+            Headerdetail
+        },
+        props:{
+            seller:{
+                type:Object,
+                default:()=>{}
+            }
+        },
+        data(){
+            return{
+                detailShow: false
+            }
+        },
+        methods:{
+            showDetail(){
+                this.detailShow = true
+            },
+            handle(val){
+                this.detailShow = val
+            }
         }
     }
 </script>
@@ -110,7 +136,33 @@ import SupportIcon from '@/components/support-icon/Support-icon.vue'
             }
         }
     }
-
+    .bulletin-wrapper{
+        display: flex;
+        height: 28px;
+        padding: 0 8px;
+        background-color: @color-background-sss;
+        align-items: center;
+        color: @color-white;
+        .bulletin-title{
+            // width: 22px;
+            flex:0 0 22px;
+            height: 12px;
+            .bg-image('bulletin');
+            background-size: 100% 100%;
+        }
+        .icon-right{
+            flex:0 0 10px;
+            font-size: @fontsize-small-s;
+        }
+        .bulletin-text{
+            flex: 1;
+            margin-left: 4px;
+            font-size: @fontsize-small-s;
+            white-space: nowrap ;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
     .bg{
         position: absolute;
         left: 0;

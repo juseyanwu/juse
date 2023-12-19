@@ -1,22 +1,27 @@
 <template>
-  <v-header />
+  <v-header :seller="sellerData"/>
+  
   <router-view/>
 </template>
 
 <script>
 import Header from '@/components/header/Header.vue'
-import axios from 'axios'
+import {getSeller} from '@/api'
 export default{
   components:{
     'v-header':Header
   },
+  data(){
+    return{
+      sellerData : {}
+    }
+  },
   created(){
-    axios.get('/api/seller')
-    .then((data)=>{
-      console.log(data);
+    getSeller().then(res=>{
+      console.log(res);
+      this.sellerData = res
     })
   }
-
 }
 </script>
 
