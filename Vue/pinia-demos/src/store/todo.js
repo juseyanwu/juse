@@ -14,6 +14,5 @@ export const useTodoStore = defineStore("todo",()=>{
     return{
         todos,
         addTodo,
-        
     }
 })
