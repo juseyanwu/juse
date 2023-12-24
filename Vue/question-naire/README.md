@@ -1,19 +1,3 @@
-# question-naire
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# rem
+移动端适配方案
+1. rem是相对单位，相对于页面的跟字体大小而改变
