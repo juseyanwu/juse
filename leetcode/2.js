@@ -1,16 +1,16 @@
-var isHappy = function(n) {
-    let a = function(n){
-        let sum = 0
-        while(n){
-        sum = sum + (n%10)*(n%10)
-        n = parseInt((n/10))
-        }
-        return sum
+var numIdenticalPairs = function(nums) {
+    if(nums.length == 1){
+        return 0;
     }
-    let x = new Map()
-    
+    const bucket = Array(101).fill(0);
+    for(let i = 0; i < nums.length; i++){
+        bucket[nums[i]]++;
+    }
+    let res = 0;
+    for(let i = 1; i < bucket.length; i++){
+        if(bucket[i]){
+            res += bucket[i] * (bucket[i] - 1)  / 2;
+        }
+    }
+    return res;
 };
-
-
-
-
