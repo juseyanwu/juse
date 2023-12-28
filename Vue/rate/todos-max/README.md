@@ -1,0 +1,25 @@
+# 复杂组件设计
+
+Todos
+
+
+- 组件公式
+    UI Components + store
+    组件不要超过100行
+    性能 + 复用
+- 组件树
+    看到一个页面，先想象组件树划分
+    App.vue
+    TodoList.vue 担子轻了，代码就少
+    TodoItem.vue UI
+
+
+- 复杂数据业务组件
+    - 数据驱动页面
+    - 积累常见的做法
+        - todos filterTodos
+        - tabs 切换
+            - 标记选中状态 visibility = 'all'/'active'/'completed'
+            - 动态绑定类名 :class = "{ selected: visibility == key }"
+            - click 事件 把visibility 设置为相应的
+
