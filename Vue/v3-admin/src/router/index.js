@@ -4,11 +4,9 @@ import { createRouter, createWebHashHistory } from "vue-router"; //history 用�
 import { usePermissStore } from "../store/permiss.js";
 import Home from "../views/home.vue"; //直接引入 有开销
 // import { usePermissStore } from "../store/permiss";
-
 // const data = usePermissStore();
 //hooks
 // console.log(data);
-
 // 设置数组 []
 // admin [1,2,3]
 // user[1]
