@@ -1,14 +1,19 @@
-var peakIndexInMountainArray = function(arr) {
-    let l = 0;
-    let r = arr.length - 1;
-    while (l <= r) {
-        let mid = (l + r) >> 1;
-        if (arr[mid] > arr[mid - 1] && arr[mid] > arr[mid + 1]) {
-            return mid;
-        } else if (arr[mid] < arr[mid - 1]) {
-            r = mid - 1;
-        } else {
-            l = mid + 1;
-        }
-    }
-};
+var generateParenthesis = function (n) {
+    const res = [];
+  
+    const dfs = (lRemain, rRemain, str) => { // 左右括号所剩的数量，str是当前构建的字符串
+      if (str.length == 2 * n) { // 字符串构建完成
+        res.push(str);           // 加入解集
+        return;                  // 结束当前递归分支
+      }
+      if (lRemain > 0) {         // 只要左括号有剩，就可以选它，然后继续做选择（递归）
+        dfs(lRemain - 1, rRemain, str + "(");
+      }
+      if (lRemain < rRemain) {   // 右括号比左括号剩的多，才能选右括号
+        dfs(lRemain, rRemain - 1, str + ")"); // 然后继续做选择（递归）
+      }
+    };
+  
+    dfs(n, n, ""); // 递归的入口，剩余数量都是n，初始字符串是空串
+    return res;
+  };
