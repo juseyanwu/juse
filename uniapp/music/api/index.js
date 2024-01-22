@@ -9,3 +9,17 @@ export const apiGetBanner = (data) => {
 		data:data
 	})
 }
+
+export const apiGetBall = () => {
+	return uni.request({
+		url:baseUrl + '/homepage/dragon/ball',
+		method:'GET'
+	})
+}
+
+export const apiGetRecommendList = () => {
+	return uni.request({
+		url:baseUrl + '/recommend/resource',
+		method:'GET'
+	})
+}
