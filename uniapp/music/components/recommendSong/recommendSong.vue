@@ -1,4 +1,4 @@
-<template>
+<template> <custom-tab-bar direction="" :show-icon="" :selected="" @onTabItemTap="" />
 	<view class="recommend-song">
 		<swiper>
 			<swiper-item>
