@@ -1,12 +1,14 @@
-var canJump = function(nums) {
-    // 必须到达end下标的数字
-    let end = nums.length - 1;
-
-    for (let i = nums.length - 2; i >= 0; i--) {
-        if (end - i <= nums[i]) {
-            end = i;
+var jump = function(nums) {
+    let curIndex = 0
+    let nextIndex = 0
+    let steps = 0
+    for(let i = 0; i < nums.length - 1; i++) {
+        nextIndex = Math.max(nums[i] + i, nextIndex)
+        if(i === curIndex) {
+            curIndex = nextIndex
+            steps++
         }
     }
 
-    return end == 0;
+    return steps
 };
