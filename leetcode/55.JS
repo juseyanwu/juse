@@ -1,14 +1,20 @@
-var jump = function(nums) {
-    let curIndex = 0
-    let nextIndex = 0
-    let steps = 0
-    for(let i = 0; i < nums.length - 1; i++) {
-        nextIndex = Math.max(nums[i] + i, nextIndex)
-        if(i === curIndex) {
-            curIndex = nextIndex
-            steps++
-        }
+const subarraySum = (nums, k) => {
+    const map = { 0: 1 };
+    let prefixSum = 0;
+    let count = 0;
+  
+    for (let i = 0; i < nums.length; i++) {
+      prefixSum += nums[i];
+  
+      if (map[prefixSum - k]) {
+        count += map[prefixSum - k];
+      }
+  
+      if (map[prefixSum]) {
+        map[prefixSum]++;
+      } else {
+        map[prefixSum] = 1;
+      }
     }
-
-    return steps
-};
+    return count;
+  };
