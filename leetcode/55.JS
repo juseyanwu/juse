@@ -1,20 +1,27 @@
-const subarraySum = (nums, k) => {
-    const map = { 0: 1 };
-    let prefixSum = 0;
-    let count = 0;
-  
-    for (let i = 0; i < nums.length; i++) {
-      prefixSum += nums[i];
-  
-      if (map[prefixSum - k]) {
-        count += map[prefixSum - k];
+/**
+ * @param {number[][]} matrix
+ * @return {number[]}
+ */
+var spiralOrder = function(matrix) {
+  if (!matrix.length || !matrix[0].length) {
+      return [];
+  }
+  const rows = matrix.length, columns = matrix[0].length;
+  const visited = new Array(rows).fill(0).map(() => new Array(columns).fill(false));
+  const total = rows * columns;
+  const order = new Array(total).fill(0);
+
+  let directionIndex = 0, row = 0, column = 0;
+  const directions = [[0, 1], [1, 0], [0, -1], [-1, 0]];
+  for (let i = 0; i < total; i++) { 
+      order[i] = matrix[row][column];
+      visited[row][column] = true;
+      const nextRow = row + directions[directionIndex][0], nextColumn = column + directions[directionIndex][1];
+      if (!(0 <= nextRow && nextRow < rows && 0 <= nextColumn && nextColumn < columns && !(visited[nextRow][nextColumn]))) {
+          directionIndex = (directionIndex + 1) % 4;
       }
-  
-      if (map[prefixSum]) {
-        map[prefixSum]++;
-      } else {
-        map[prefixSum] = 1;
-      }
-    }
-    return count;
-  };
+      row += directions[directionIndex][0];
+      column += directions[directionIndex][1];
+  }
+  return order;
+};
