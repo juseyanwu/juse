@@ -1,27 +1,14 @@
-/**
- * @param {number[][]} matrix
- * @return {number[]}
- */
-var spiralOrder = function(matrix) {
-  if (!matrix.length || !matrix[0].length) {
-      return [];
-  }
-  const rows = matrix.length, columns = matrix[0].length;
-  const visited = new Array(rows).fill(0).map(() => new Array(columns).fill(false));
-  const total = rows * columns;
-  const order = new Array(total).fill(0);
-
-  let directionIndex = 0, row = 0, column = 0;
-  const directions = [[0, 1], [1, 0], [0, -1], [-1, 0]];
-  for (let i = 0; i < total; i++) { 
-      order[i] = matrix[row][column];
-      visited[row][column] = true;
-      const nextRow = row + directions[directionIndex][0], nextColumn = column + directions[directionIndex][1];
-      if (!(0 <= nextRow && nextRow < rows && 0 <= nextColumn && nextColumn < columns && !(visited[nextRow][nextColumn]))) {
-          directionIndex = (directionIndex + 1) % 4;
-      }
-      row += directions[directionIndex][0];
-      column += directions[directionIndex][1];
-  }
-  return order;
+var hIndex = function (citations) {
+    const n = citations.length;
+    const cnt = new Array(n + 1).fill(0);
+    for (const c of citations) {
+        cnt[Math.min(c, n)]++; // 引用次数 > n，等价于引用次数为 n
+    }
+    let s = 0;
+    for (let i = n; ; i--) { // i=0 的时候，s>=i 一定成立
+        s += cnt[i];
+        if (s >= i) { // 说明有至少 i 篇论文的引用次数至少为 i
+            return i;
+        }
+    }
 };
