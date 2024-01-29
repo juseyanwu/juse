@@ -1,14 +1,19 @@
-var hIndex = function (citations) {
-    const n = citations.length;
-    const cnt = new Array(n + 1).fill(0);
-    for (const c of citations) {
-        cnt[Math.min(c, n)]++; // 引用次数 > n，等价于引用次数为 n
+var merge = function (intervals) {
+    let res = [];
+    intervals.sort((a, b) => a[0] - b[0]);
+  
+    let prev = intervals[0];
+  
+    for (let i = 1; i < intervals.length; i++) {
+      let cur = intervals[i];
+      if (prev[1] >= cur[0]) { // 有重合
+        prev[1] = Math.max(cur[1], prev[1]); 
+      } else {       // 不重合，prev推入res数组 
+        res.push(prev);
+        prev = cur;  // 更新 prev
+      }
     }
-    let s = 0;
-    for (let i = n; ; i--) { // i=0 的时候，s>=i 一定成立
-        s += cnt[i];
-        if (s >= i) { // 说明有至少 i 篇论文的引用次数至少为 i
-            return i;
-        }
-    }
-};
+  
+    res.push(prev);
+    return res;
+  };
