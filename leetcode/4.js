@@ -1,18 +1,43 @@
 /**
- * @param {number[][]} matrix
- * @return {void} Do not return anything, modify matrix in-place instead.
+ * @param {string} s
+ * @param {string[]} words
+ * @return {number[]}
  */
-var rotate = function(matrix) {
-    const n = matrix.length;
-    const matrix_new = new Array(n).fill(0).map(() => new Array(n).fill(0));
+var findSubstring = function(s, words) {
+    const res = [];
+    const m = words.length, n = words[0].length, ls = s.length;
     for (let i = 0; i < n; i++) {
-        for (let j = 0; j < n; j++) {
-            matrix_new[j][n - i - 1] = matrix[i][j];
+        if (i + m * n > ls) {
+            break;
+        }
+        const differ = new Map();
+        for (let j = 0; j < m; j++) {
+            const word = s.substring(i + j * n, i + (j + 1) * n);
+            differ.set(word, (differ.get(word) || 0) + 1);
+        }
+        for (const word of words) {
+            differ.set(word, (differ.get(word) || 0) - 1);
+            if (differ.get(word) === 0) {
+                differ.delete(word);
+            }
+        }
+        for (let start = i; start < ls - m * n + 1; start += n) {
+            if (start !== i) {
+                let word = s.substring(start + (m - 1) * n, start + m * n);
+                differ.set(word, (differ.get(word) || 0) + 1);
+                if (differ.get(word) === 0) {
+                    differ.delete(word);
+                }
+                word = s.substring(start - n, start);
+                differ.set(word, (differ.get(word) || 0) - 1);
+                if (differ.get(word) === 0) {
+                    differ.delete(word);
+                }
+            }
+            if (differ.size === 0) {
+                res.push(start);
+            }
         }
     }
-    for (let i = 0; i < n; i++) {
-        for (let j = 0; j < n; j++) {
-            matrix[i][j] = matrix_new[i][j];
-        }
-    }
+    return res;
 };
