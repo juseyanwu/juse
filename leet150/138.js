@@ -1,22 +1,37 @@
 /**
- * // Definition for a Node.
- * function Node(val, next, random) {
- *    this.val = val;
- *    this.next = next;
- *    this.random = random;
- * };
+ * @param {string} s
+ * @return {number}
  */
+var calculate = function(s) {
+    const ops = [1];
+    let sign = 1;
 
-/**
- * @param {Node} head
- * @return {Node}
- */
-var copyRandomList = function(head, cachedNode = new Map()) {
-    if (head === null) {
-        return null;
+    let ret = 0;
+    const n = s.length;
+    let i = 0;
+    while (i < n) {
+        if (s[i] === ' ') {
+            i++;
+        } else if (s[i] === '+') {
+            sign = ops[ops.length - 1];
+            i++;
+        } else if (s[i] === '-') {
+            sign = -ops[ops.length - 1];
+            i++;
+        } else if (s[i] === '(') {
+            ops.push(sign);
+            i++;
+        } else if (s[i] === ')') {
+            ops.pop();
+            i++;
+        } else {
+            let num = 0;
+            while (i < n && !(isNaN(Number(s[i]))) && s[i] !== ' ') {
+                num = num * 10 + s[i].charCodeAt() - '0'.charCodeAt();
+                i++;
+            }
+            ret += sign * num;
+        }
     }
-    if (!cachedNode.has(head)) {
-        cachedNode.set(head, {val: head.val}), Object.assign(cachedNode.get(head), {next: copyRandomList(head.next, cachedNode), random: copyRandomList(head.random, cachedNode)})
-    }
-    return cachedNode.get(head);
-}
+    return ret;
+};
