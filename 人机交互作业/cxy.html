@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        background: linear-gradient(
+          to right,
+          rgb(248, 8, 8),
+          rgb(51, 46, 46)
+        );
+        height: 40px;
+        color: white;
+      }
+      .banner {
+        height: 150px;
+        overflow: hidden;
+      }
+      img {
+        width: 100%;
+        bottom: 50px;
+      }
+      ul {
+        margin-top: 10px;
+        list-style-type: none;
+        display: grid;
+        grid-template-columns: 1fr 1fr; 
+        gap: 5px;
+
+      }
+      li {
+        height: 150px;
+        background-color: #6e5858;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        font-size: 20px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="note-container">
+      <div class="header">永劫无间人物选择</div>
+      <div class="banner">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk6hCzyZiiOHZW_QPxZ38MJ-Iw603vSnFxCA&usqp=CAU" alt="">
+      </div>
+      <ul>
+        <li>玉小巧</li>
+        <li>胡为</li>
+        <li>沈妙</li>
+        <li>殷紫萍</li>
+        <li>顾清寒</li>
+        <li>无尘</li>
+        <li>季沧海</li>
+        <li>迦南</li>
+      </ul>
+    </div>
+  </body>
+</html>
