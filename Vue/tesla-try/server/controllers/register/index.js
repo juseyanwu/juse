@@ -2,7 +2,7 @@ const userInfo = require('../../modles/login')   // UserInfo 就是生成的user
 
 const register = async (ctx, next) => {
     const { account, password } = ctx.request.body
-    console.log(ctx.body);
+    console.log(ctx.body,111);
 
     const result = await userInfo.findOne({
         account: account
@@ -22,10 +22,10 @@ const register = async (ctx, next) => {
                 account: account,
                 password: password
             })
-            shoppingcart.create({   // 创建购物车表
-                account: account,
-                commodity: obj
-            })
+            // shoppingcart.create({   // 创建购物车表
+            //     account: account,
+            //     commodity: obj
+            // })
 
             ctx.body = {
                 code: 1,
