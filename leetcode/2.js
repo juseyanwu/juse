@@ -1,4 +1,11 @@
-var addDigits = function(num) {
-    return num == 0 ? num : (num - 1) % 9 + 1
-};
+let x = {
+    a:'haha',
+    b:'heihei',
+    c:{
+        type:'111'
+    }
+}
 
+for (let key in x){
+    console.log(x.key);
+}
