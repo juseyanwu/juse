@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <canvas id="canvas" width="560" height="560"></canvas>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const GRID_SIZE = 40;
+        const ROWS = 14;
+        const COLS = 14;
+        let board = []; // 0: 空，1: 黑，2: 白
+        let isBlackTurn = true;
+        let isGameOver = false;
+
+        // 初始化棋盘
+        function initBoard() {
+            for (let i = 0; i < ROWS; i++) {
+                board[i] = [];
+                for (let j = 0; j < COLS; j++) {
+                    board[i][j] = 0;
+                }
+            }
+        }
+
+        // 绘制棋盘
+        function drawBoard() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            for (let i = 0; i < ROWS; i++) {
+                ctx.moveTo(0, i * GRID_SIZE);
+                ctx.lineTo(GRID_SIZE * (COLS - 1), i * GRID_SIZE);
+            }
+            for (let j = 0; j < COLS; j++) {
+                ctx.moveTo(j * GRID_SIZE, 0);
+                ctx.lineTo(j * GRID_SIZE, GRID_SIZE * (ROWS - 1));
+            }
+            ctx.stroke();
+        }
+
+        // 绘制棋子
+        function drawPiece(x, y, isBlack) {
+            ctx.beginPath();
+            ctx.arc(x * GRID_SIZE, y * GRID_SIZE, 15, 0, Math.PI * 2);
+            ctx.closePath();
+            ctx.fillStyle = isBlack ? '#000' : '#fff';
+            ctx.fill();
+            board[y][x] = isBlack ? 1 : 2;
+        }
+
+        // 判断游戏是否结束
+        function checkGameOver(x, y) {
+            let directions = [
+                [[-1, 0], [1, 0]], // 横向
+                [[0, -1], [0, 1]], // 纵向
+                [[-1, -1], [1, 1]], // 左斜向
+                [[-1, 1], [1, -1]]  // 右斜向
+            ];
+            for (let dir of directions) {
+                let count = 1;
+                for (let i = 0; i < 2; i++) {
+                    let dx = dir[i][0];
+                    let dy = dir[i][1];
+                    let newX = x + dx;
+                    let newY = y + dy;
+                    while (newX >= 0 && newX < COLS && newY >= 0 && newY < ROWS && board[newY][newX] === board[y][x]) {
+                        count++;
+                        newX += dx;
+                        newY += dy;
+                    }
+                }
+                if (count >= 5) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // 初始化
+        initBoard();
+        drawBoard();
+
+        // 点击事件
+        canvas.onclick = function(e) {
+            if (isGameOver) {
+                alert('游戏已结束，请重新开始！');
+                return;
+            }
+            let x = Math.floor(e.clientX / GRID_SIZE);
+            let y = Math.floor(e.clientY / GRID_SIZE);
+            if (board[y][x] !== 0) {
+                alert('此处已有棋子，请选择其他位置！');
+                return;
+            }
+            drawPiece(x, y, isBlackTurn);
+            if (checkGameOver(x, y)) {
+                let winner = isBlackTurn ? '黑方' : '白方';
+                alert(winner + '赢了！');
+                isGameOver = true;
+            }
+            isBlackTurn = !isBlackTurn;
+        };
+    </script>
+</body>
+</html>
