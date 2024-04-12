@@ -3,14 +3,14 @@ class MyPromise {
         this.state = 'pending'
         this.value = undefined
         this.reason = undefined
-        this.onFulfilledCallback = []
-        this.onRejectedCallback = []
+        this.resolvecallback = []
+        this.rejectedcallback = []
 
-        const reslove = (value) => {
+        const resolve = (value) => {
             if(this.state === 'pending'){
                 this.state = 'fulfilled'
                 this.value = value
-                this.onFulfilledCallback.forEach(cb=>cb(value))
+                this.resolvecallback.forEach(cb=>cb(value))
             }
         }
 
@@ -18,20 +18,15 @@ class MyPromise {
             if(this.state === 'pending'){
                 this.state = 'rejected'
                 this.reason = reason
-                this.onRejectedCallback.forEach(cb=>cb(reason))
+                this.rejectedcallback.forEach(cb=>cb(reason))
             }
         }
 
-        executor(reslove,reject)
+
+        executor(resolve,reject)
     }
-    
-    then(onFulfilled,onRejected){
+
+    then(resolvecallback,rejectedcallback){
 
     }
 }
-
-let p = new MyPromise((reject)=>{
-    reject('zjy')
-})
-
-console.log(p);
