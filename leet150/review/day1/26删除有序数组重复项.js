@@ -27,3 +27,21 @@ var removeDuplicates = function(nums) {
 };
 
 // 作者：力扣官方题解
+
+
+
+
+
+
+var removeDuplicates = function(nums) {
+    let l = 0
+    for(let r = 0;r<nums.length;r++){
+        if(nums[l]!=nums[r]){
+            l++
+            nums[l] = nums[r]
+        }
+    }
+    return l+1
+};
+
+console.log(removeDuplicates([]));
