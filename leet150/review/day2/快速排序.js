@@ -4,7 +4,6 @@ function swap(nums, i, j) {
     nums[i] = nums[j];
     nums[j] = tmp;
 }
-
 /* 哨兵划分 */
 function partition(nums, left, right) {
     // 以 nums[left] 为基准数
@@ -39,4 +38,7 @@ let arr = [1,6,3,7,9,3,5,8,4]
 quickSort(arr,0,8)
 
 console.log(arr);
+
+
+
 
