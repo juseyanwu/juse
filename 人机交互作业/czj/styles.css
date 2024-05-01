@@ -1,0 +1,121 @@
+/* 基础样式 */  
+* {  
+    margin: 0;  
+    padding: 0;  
+    box-sizing: border-box; /* 确保padding和border包含在元素的总宽度和高度内 */  
+}  
+  
+.note-container {  
+    width: 100%;  
+    max-width: 1200px; /* 限制最大宽度，防止在桌面端过宽 */  
+    margin: 0 auto; /* 水平居中 */  
+    padding: 10px;  
+}  
+  
+.header {  
+    display: flex;  
+    justify-content: center;  
+    align-items: center;  
+    font-size: 20px;  
+    background: linear-gradient(to right, rgb(68, 64, 64), rgb(255, 255, 255));  
+    height: 40px;  
+    padding: 0 10px; /* 添加内边距以改善布局 */  
+}  
+  
+.banner {  
+    height: 150px;  
+    overflow: hidden;  
+    position: relative; /* 为图片的定位做准备 */  
+}  
+  
+.banner img {  
+    width: 100%;  
+    height: auto;  
+    position: absolute; /* 绝对定位以调整图片位置 */  
+    top: 50%;  
+    left: 50%;  
+    transform: translate(-50%, -50%); /* 水平垂直居中 */  
+}  
+  
+.note-list {  
+    margin-top: 10px;  
+    list-style-type: none;  
+    display: flex;  
+    flex-wrap: wrap; /* 允许列表项换行 */  
+    justify-content: space-around; /* 均匀分布列表项 */  
+}  
+  
+.note-list li {  
+    height:200px;
+    flex: 0 0 calc(50% - 10px); /* 每行两个列表项，留10px间距 */  
+    margin-bottom: 10px; /* 每个列表项下边的间距 */  
+    background-color: #6e5858;  
+    display: flex;  
+    justify-content: center;  
+    align-items: center;  
+    border-radius: 10px;  
+    font-size: 18px; /* 稍微减小字体大小以适应手机端 */  
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);  
+    padding: 10px; /* 添加内边距以改善布局 */ 
+}  
+
+header {  
+    background-color: #333;  
+    color: #fff;  
+    padding: 10px 0;  
+}  
+  
+nav ul#navbar {  
+    list-style-type: none;  
+    margin: 0;  
+    padding: 0;  
+    overflow: hidden;  
+    background-color: #333;  
+    display: flex;  
+    justify-content: space-around;  
+    align-items: center;  
+}  
+  
+nav ul#navbar li {  
+    /* 滑动门技术：使用背景图片 */  
+    background-image: url('nav-button-bg.png'); /* 假设这是导航按钮的背景图片 */  
+    background-repeat: no-repeat;  
+    background-position: right center;  
+}  
+  
+nav ul#navbar li a {  
+    display: block;  
+    color: white;  
+    text-align: center;  
+    padding: 14px 16px;  
+    text-decoration: none;  
+    background-image: url('nav-button-left.png'); /* 假设这是导航按钮左侧的背景图片 */  
+    background-repeat: no-repeat;  
+    background-position: left center;  
+}  
+  
+nav ul#navbar li a:hover {  
+    background-color: #111;  
+}  
+  
+/* 媒体查询，当屏幕宽度小于600px时应用以下样式 */  
+@media (max-width: 600px) {  
+    .note-list li {  
+        flex: 0 0 100%; /* 每行一个列表项 */  
+    }  
+  
+    .header {  
+        font-size: 18px; /* 减小标题字体大小以适应小屏幕 */
+    } 
+     .banner {  
+        height: 100px; /* 减小banner的高度 */  
+    }  
+  
+    .banner img {  
+        /* 如果需要，可以调整图片大小或位置以适应更小的屏幕 */  
+    }  
+  
+    .note-container {  
+        padding: 5px; /* 减小容器内边距 */  
+    }  
+} 

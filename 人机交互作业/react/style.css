@@ -1,0 +1,130 @@
+/* 通用样式 */  
+body {  
+    margin: 0;  
+    padding: 0;  
+    font-family: Arial, sans-serif;  
+}  
+  
+header {  
+    background-color: #333;  
+    color: #fff;  
+    padding: 10px 0;  
+}  
+  
+nav ul#navbar {  
+    list-style-type: none;  
+    margin: 0;  
+    padding: 0;  
+    overflow: hidden;  
+    background-color: #333;  
+    display: flex;  
+    justify-content: space-around;  
+    align-items: center;  
+}  
+  
+nav ul#navbar li {  
+    /* 滑动门技术：使用背景图片 */  
+    background-image: url('nav-button-bg.png'); /* 假设这是导航按钮的背景图片 */  
+    background-repeat: no-repeat;  
+    background-position: right center;  
+}  
+  
+nav ul#navbar li a {  
+    display: block;  
+    color: white;  
+    text-align: center;  
+    padding: 14px 16px;  
+    text-decoration: none;  
+    background-image: url('nav-button-left.png'); /* 假设这是导航按钮左侧的背景图片 */  
+    background-repeat: no-repeat;  
+    background-position: left center;  
+}  
+  
+nav ul#navbar li a:hover {  
+    background-color: #111;  
+}  
+  
+main {  
+    display: flex;  
+    padding: 20px;  
+}  
+  
+.content {  
+    flex: 2; /* 国字形布局，内容区域占据大部分空间 */  
+    background-color: #f2f2f2;  
+    padding: 20px;  
+    box-sizing: border-box;  
+    /* 变形过渡效果 */  
+    transition: transform 0.3s ease-in-out;  
+}  
+  
+.content:hover {  
+    transform: scale(1.02); /* 鼠标悬停时放大 */  
+}  
+  
+.sidebar {  
+    flex: 1; /* 国字形布局，侧边栏区域占据小部分空间 */  
+    background-color: #ddd;  
+    padding: 20px;  
+    box-sizing: border-box;  
+}  
+  
+footer {  
+    background-color: #333;  
+    color: #fff;  
+    text-align: center;  
+    padding: 10px 0;  
+    position: relative; /* 使用相对定位，而非固定定位 */  
+    clear: both; /* 确保在内容下方 */  
+}  
+  
+* {
+    margin: 0;
+    padding: 0;
+  }
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    background: linear-gradient(
+      to right,
+      rgb(68, 64, 64),
+      rgb(255, 255, 255)
+    );
+    height: 40px;
+  }
+  .banner {
+    height: 150px;
+    overflow: hidden;
+  }
+  img {
+    width: 100%;
+    bottom: 50px;
+    transform: translateX(0px) translateY(-80px);
+  }
+  .xxx {
+    margin-top: 10px;
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 5px;
+
+  }
+  .xxx li {
+    height: 150px;
+    background-color: #6e5858;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    font-size: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+/* 响应式布局 */  
+@media screen and (max-width: 768px) {  
+    main {  
+        flex-direction: column;  
+    }  
+      
+    .content, .sidebar
