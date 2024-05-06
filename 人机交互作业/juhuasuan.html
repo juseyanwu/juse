@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>倒计时页面</title>
+    <style>
+      span {
+        font-weight: 900;
+        font-size: 90px;
+      }
+      .x {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 160px;
+        height: 160px;
+        background: #000;
+        color: aliceblue;
+        border-radius: 20px;
+      }
+      .xxx {
+        margin-left: 32%;
+      }
+      .header {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+      .title{
+        font-size: 150px;
+        color: red;
+        font-weight: 900;
+      }
+      .last{
+        font-size: 70px;
+        color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="title">聚划算</div>
+    </div>
+    <div class="header">
+      <div class="last">距离结束仅剩</div>
+    </div>
+
+    <div class="xxx">
+      <span id="hours" class="x"></span>
+      <span>:</span>
+      <span id="min" class="x"></span>
+      <span>:</span>
+      <span id="sec" class="x"></span>
+    </div>
+
+    <script>
+      // 设置目标时间（这里假设是今年的5月10日晚上八点）
+      var targetDate = new Date();
+      targetDate.setFullYear(new Date().getFullYear()); // 使用当前年份
+      targetDate.setMonth(4); // 注意月份是从0开始的，所以5月是4
+      targetDate.setDate(10);
+      targetDate.setHours(20);
+      targetDate.setMinutes(0);
+      targetDate.setSeconds(0);
+      targetDate.setMilliseconds(0);
+
+      // 更新倒计时的函数
+      function updateCountdown() {
+        var now = new Date();
+        var distance = targetDate - now;
+
+        // 计算时间差（时、分、秒），同时考虑天数转换为小时
+        var totalHours = Math.floor(distance / (1000 * 60 * 60)); // 总小时数（包括天数）
+        var hours = totalHours; // 当天剩余的小时数
+        var days = Math.floor(totalHours / 24); // 总天数
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // 显示倒计时（只显示小时、分钟和秒）
+        document.getElementById("hours").innerText = hours;
+        document.getElementById("min").innerText = minutes;
+        document.getElementById("sec").innerText = seconds;
+
+        // 如果倒计时结束，显示相应信息
+        if (distance < 0) {
+          clearInterval(countdownTimer);
+          document.getElementById("countdown").innerText = "倒计时结束！";
+        }
+      }
+
+      // 每秒更新一次倒计时
+      var countdownTimer = setInterval(updateCountdown, 1000);
+
+      // 初始时显示一次倒计时
+      updateCountdown();
+    </script>
+  </body>
+</html>
