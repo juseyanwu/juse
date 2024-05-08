@@ -24,19 +24,3 @@ var swapPairs = function(head) {
 
     return nexthead
 };
-
-
-
-var swapPairs = function(head) {
-    if(head === null || head.next === null){
-        return head
-    }
-
-    let newhead = head.next
-    head.next = swapPairs(newhead.next)
-    head.next = newhead
-    
-    return newhead
-};
-
-

@@ -8,4 +8,4 @@ var invertTree = function(root) {
     root.right = temp
 
     return root
-};
+}
