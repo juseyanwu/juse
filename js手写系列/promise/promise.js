@@ -8,7 +8,7 @@ class MyPromise {
         this.onRejectedCallbacks = []    //只要状态变为rejected就要执行的函数
 
         const resolve = (value) => {
-            if(this.state === 'pending'){
+            if(this.state === 'pending') {
                 this.state = 'fulfilled'
                 this.value = value
                 this.onFulfilledCallbacks.forEach(cb => cb(value)) //把then中的回调函数触发掉
@@ -16,7 +16,7 @@ class MyPromise {
         }
 
         const reject = (reason) => {
-            if(this.state === 'pending'){
+            if(this.state === 'pending') {
                 this.state = 'rejected'
                 this.reason = reason
                 this.onRejectedCallbacks.forEach(cb => cb(reason)) //把then中的回调函数触发掉
@@ -26,19 +26,23 @@ class MyPromise {
         executor(resolve,reject)
     }
 
-    then(onFulfilled,onRejected){
+    then(onFulfilled,onRejected) {
         onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value;  
         //判断传进来的参数是不是函数体，如果是，当自己，如果不是，传一个没有意义的函数体
         onRejected = typeof onRejected === 'function' ? onRejected : value => value;
 
         // 返回一个promise
         const newPromise = new MyPromise((resolve,reject) => {
-            if(this.state === 'fulfilled'){  //then前面的promise对象状态是同步变更完成了，自己把自己的回调触发掉就好了，没必要存起来
+            if(this.state === 'fulfilled') {  //then前面的promise对象状态是同步变更完成了，自己把自己的回调触发掉就好了，没必要存起来
                                                 //  这种情况在前面的promise回调里面写的是同步代码时
                 setTimeout(()=>{
                     try{
-                       const result = onFulfilled(this.value)
-                        resolve(result)  //应该放result里面的resolve中的参数，不在意细节
+                        const result = onFulfilled(this.value)
+                        if (result instanceof MyPromise) {
+                            newPromise = result
+                        } else {
+                            resolve(result)
+                        }
                     }
                     catch(error){
                         reject(error)
@@ -58,7 +62,7 @@ class MyPromise {
                 })
             }
 
-            if(this.state === 'pending'){ //缓存then中的回调
+            if(this.state === 'pending') { //缓存then中的回调
                 this.onFulfilledCallbacks.push((value)=>{
                     setTimeout(()=>{
                         try{
@@ -104,6 +108,8 @@ class MyPromise {
     }
 }
 
+
+
 function a () {
     return new MyPromise((resolve)=>{
         setTimeout(()=>{
@@ -135,3 +141,4 @@ a().then((res)=>{
 // .then(...)
 
 // 因为a()立即执行，.then也是立即执行，只不过里面的回调不会立即触发，那么.then里的回调要存起来，不然在该执行他的那个时间点就没办法触发它
+
